@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>커피광인 | 따뜻한 한 잔의 여유</title>
+
+    <style>
+        /* ===========================
+       기본 설정
+       =========================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "Pretendard", "Malgun Gothic", sans-serif;
+            background: #f7f2ec;
+            color: #3d2d22;
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* ===========================
+       상단 메뉴
+       =========================== */
+        header {
+            position: sticky;
+            top: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(8px);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            z-index: 100;
+        }
+
+        nav {
+            max-width: 1100px;
+            margin: auto;
+            padding: 18px 24px;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #6b4423;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .iced-americano {
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        .logo:hover .iced-americano {
+            transform: scale(1.15) rotate(8deg);
+        }
+
+        .menu {
+            display: flex;
+            gap: 28px;
+            font-weight: 500;
+        }
+
+        .menu a:hover {
+            color: #b06a33;
+        }
+
+        /* ===========================
+       히어로 영역
+       =========================== */
+        .hero {
+            min-height: 80vh;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+
+            padding: 30px;
+
+            background:
+                linear-gradient(rgba(72, 48, 30, 0.45),
+                    rgba(72, 48, 30, 0.45)),
+                url("https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=1600") center/cover;
+        }
+
+        .hero-content {
+            color: white;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 18px;
+        }
+
+        .hero p {
+            font-size: 1.15rem;
+            margin-bottom: 30px;
+        }
+
+        .hero button {
+            background: #8b5a2b;
+            color: white;
+            border: none;
+            padding: 14px 32px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: 0.25s;
+        }
+
+        .hero button:hover {
+            transform: translateY(-2px);
+            background: #6f421d;
+        }
+
+        /* ===========================
+       공통 섹션
+       =========================== */
+        section {
+            max-width: 1100px;
+            margin: auto;
+            padding: 80px 20px;
+        }
+
+        section h2 {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 2rem;
+        }
+
+        #menu-section h2 {
+            color: #1a73e8;
+            font-weight: 800;
+        }
+
+        /* ===========================
+       메뉴 카드
+       =========================== */
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 24px;
+        }
+
+        .card {
+            background: white;
+            padding: 28px;
+            border-radius: 18px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+            transition: 0.25s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card h3 {
+            margin-bottom: 10px;
+            color: #6d4321;
+        }
+
+        .card p {
+            color: #666;
+            margin-bottom: 18px;
+        }
+
+        .price {
+            font-weight: bold;
+            font-size: 1.1rem;
+            color: #a14d17;
+        }
+
+        /* ===========================
+       위치 정보
+       =========================== */
+        .info-box {
+            background: white;
+            border-radius: 18px;
+            padding: 35px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .info-box p {
+            margin: 12px 0;
+        }
+
+        /* ===========================
+       푸터
+       =========================== */
+        footer {
+            text-align: center;
+            padding: 30px;
+            background: #4d3523;
+            color: white;
+        }
+
+        /* ===========================
+       모바일 대응
+       =========================== */
+        @media (max-width:700px) {
+
+            nav {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ===========================
+       상단 메뉴
+       =========================== -->
+    <header>
+        <nav>
+
+            <!-- 로고 텍스트 -->
+            <div class="logo">
+                <svg class="iced-americano" viewBox="0 0 100 100" width="36" height="36" style="overflow: visible;">
+                    <defs>
+                        <!-- Coffee Gradient -->
+                        <linearGradient id="coffeeGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                            <stop offset="0%" stop-color="#4E2C13" />
+                            <stop offset="60%" stop-color="#321a0a" />
+                            <stop offset="100%" stop-color="#1B0A02" />
+                        </linearGradient>
+                        <!-- Glass Gradient -->
+                        <linearGradient id="glassGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" stop-color="rgba(255,255,255,0.7)" />
+                            <stop offset="25%" stop-color="rgba(255,255,255,0.2)" />
+                            <stop offset="75%" stop-color="rgba(255,255,255,0.1)" />
+                            <stop offset="100%" stop-color="rgba(255,255,255,0.8)" />
+                        </linearGradient>
+                        <!-- Straw Gradient -->
+                        <linearGradient id="strawGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" stop-color="#e08e45" />
+                            <stop offset="100%" stop-color="#b06a33" />
+                        </linearGradient>
+                    </defs>
+                    
+                    <!-- Straw -->
+                    <rect x="62" y="5" width="6" height="60" rx="3" transform="rotate(-15 65 35)" fill="url(#strawGradient)" />
+                    <rect x="63" y="10" width="1.5" height="40" rx="0.7" transform="rotate(-15 65 35)" fill="rgba(255,255,255,0.4)" />
+                    
+                    <!-- Cup Back / Shadow -->
+                    <path d="M 25 35 L 32 82 C 32.5 86, 67.5 86, 68 82 L 75 35 Z" fill="rgba(0,0,0,0.03)" />
+                    
+                    <!-- Coffee Liquid -->
+                    <path class="coffee-liquid" d="M 26.5 45 L 32.2 81 C 32.5 83, 67.5 83, 67.8 81 L 73.5 45 C 73.5 45, 50 48, 26.5 45 Z" fill="url(#coffeeGradient)" />
+                    
+                    <!-- Ice Cubes -->
+                    <!-- Cube 1 -->
+                    <rect class="ice-cube cube-1" x="34" y="48" width="14" height="14" rx="3" transform="rotate(12 41 55)" fill="rgba(255,255,255,0.35)" stroke="rgba(255,255,255,0.6)" stroke-width="1.5" />
+                    <path d="M 36 51 L 43 49" stroke="rgba(255,255,255,0.5)" stroke-width="1" stroke-linecap="round" />
+                    
+                    <!-- Cube 2 -->
+                    <rect class="ice-cube cube-2" x="52" y="54" width="12" height="12" rx="3" transform="rotate(-25 58 60)" fill="rgba(255,255,255,0.3)" stroke="rgba(255,255,255,0.5)" stroke-width="1.5" />
+                    
+                    <!-- Cube 3 -->
+                    <rect class="ice-cube cube-3" x="38" y="66" width="11" height="11" rx="2.5" transform="rotate(35 43.5 71.5)" fill="rgba(255,255,255,0.25)" stroke="rgba(255,255,255,0.4)" stroke-width="1.2" />
+
+                    <!-- Cup Outline and Highlights -->
+                    <path d="M 25 35 L 32 82 C 32.5 86, 67.5 86, 68 82 L 75 35" stroke="#5c3a21" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" fill="none" />
+                    <!-- Cup Rim -->
+                    <ellipse cx="50" cy="35" rx="25" ry="4" stroke="#5c3a21" stroke-width="3" fill="url(#glassGradient)" />
+                    
+                    <!-- Reflection/Shine on Glass -->
+                    <path d="M 29 40 L 34 76" stroke="rgba(255,255,255,0.4)" stroke-width="2.5" stroke-linecap="round" />
+                    
+                    <!-- Condensation Water Drops -->
+                    <circle cx="38" cy="42" r="1.5" fill="#a5d8ff" opacity="0.8" />
+                    <circle cx="68" cy="49" r="1" fill="#a5d8ff" opacity="0.8" />
+                    <circle cx="66" cy="58" r="1.8" fill="#a5d8ff" opacity="0.8" />
+                </svg>
+                <span>커피광인</span>
+            </div>
+
+            <!-- 간단한 메뉴 -->
+            <div class="menu">
+                <a href="#home">홈</a>
+                <a href="#menu-section">메뉴</a>
+                <a href="#location">위치</a>
+            </div>
+
+        </nav>
+    </header>
+
+    <!-- ===========================
+       메인 히어로 영역
+       =========================== -->
+    <section class="hero" id="home">
+
+        <div class="hero-content">
+            <h1>오늘도 향긋한 커피와 함께<br>잠시 쉬어가세요.</h1>
+
+            <p>
+                갓 내린 커피와 따뜻한 공간이 있는 작은 감성 카페,
+                <strong>커피광인</strong>
+            </p>
+
+            <!-- 버튼을 누르면 메뉴 영역으로 이동 -->
+            <button id="menuBtn">메뉴 보기</button>
+        </div>
+
+    </section>
+
+    <!-- ===========================
+       인기 메뉴
+       =========================== -->
+    <section id="menu-section">
+
+        <h2>인기 메뉴</h2>
+
+        <div class="cards">
+
+            <!-- 카드 1 -->
+            <div class="card">
+                <h3>시그니처 아메리카노</h3>
+                <p>고소한 향과 깔끔한 끝맛이 매력적인 대표 메뉴</p>
+                <div class="price">₩4,500</div>
+            </div>
+
+            <!-- 카드 2 -->
+            <div class="card">
+                <h3>바닐라 라떼</h3>
+                <p>부드러운 우유와 은은한 바닐라 향의 조화</p>
+                <div class="price">₩5,500</div>
+            </div>
+
+            <!-- 카드 3 -->
+            <div class="card">
+                <h3>카라멜 크림 콜드브루</h3>
+                <p>달콤한 크림과 진한 콜드브루를 함께 즐겨보세요</p>
+                <div class="price">₩6,000</div>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ===========================
+       위치 및 영업시간
+       =========================== -->
+    <section id="location">
+
+        <h2>매장 안내</h2>
+
+        <div class="info-box">
+
+            <p><strong>📍 위치</strong></p>
+            <p>서울시 어딘가 따뜻한 골목 1층 (예시 주소)</p>
+
+            <br>
+
+            <p><strong>🕒 영업시간</strong></p>
+            <p>월요일 ~ 금요일 : 09:00 ~ 21:00</p>
+            <p>토요일 ~ 일요일 : 10:00 ~ 22:00</p>
+
+            <br>
+
+            <p>
+                향긋한 원두와 편안한 분위기로 언제든 방문해 주세요.
+            </p>
+
+        </div>
+
+    </section>
+
+    <!-- ===========================
+       푸터
+       =========================== -->
+    <footer>
+        © 2026 Coffee Gwangin. All Rights Reserved.
+    </footer>
+
+    <script>
+        // ===========================
+        // "메뉴 보기" 버튼을 누르면
+        // 인기 메뉴 영역으로 부드럽게 이동
+        // ===========================
+
+        const menuButton = document.getElementById("menuBtn");
+
+        menuButton.addEventListener("click", function () {
+            document.getElementById("menu-section").scrollIntoView({
+                behavior: "smooth"
+            });
+        });
+
+        // ===========================
+        // 페이지가 열릴 때 콘솔에 안내 문구 출력
+        // (JavaScript 예제용)
+        // ===========================
+        console.log("커피광인 홈페이지에 오신 것을 환영합니다!");
+    </script>
+
+</body>
+
+</html>
